@@ -97,8 +97,8 @@ function fetchEvents(config) {
             isPointInTime: false,
             notes: eventContent,
             color: color,
-            href: "popup://?title=" + encodeURIComponent(eventTitle) + "&content=" + encodeURIComponent(eventContent),
-            imageURL: null 
+            href: sidefy.popup.build(eventTitle, eventContent),
+            imageURL: null
         });
 
         // 4. Cache the result
