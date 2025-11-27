@@ -1,7 +1,7 @@
 {
     "name": "GitHub Notifications",
     "description": "Fetch GitHub notifications and subscriptions, including @mentions, issue assignments, PR review requests, etc. Supports filtering different types of notifications and displaying them in the calendar.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.10.7",
     "tags": [
