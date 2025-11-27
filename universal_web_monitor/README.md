@@ -6,7 +6,7 @@ This plugin allows you to monitor any webpage and extract specific information u
 
 | Parameter | Type | Default | Description | Example |
 | :--- | :--- | :--- | :--- | :--- |
-| `url` | string |  | The full URL of the webpage you want to monitor. | `https://news.ycombinator.com/` |
+| `url` | url |  | The full URL of the webpage you want to monitor. | `https://news.ycombinator.com/` |
 | `prompt` | string |  | Instructions for AI: What information to extract. | `Summarize the top 3 news headlines.` |
 | `interval` | number | `6` | How often (in hours) the plugin should check the webpage. | `1` |
 | `keywords` | string | | Keywords to highlight (comma separated). If found, event turns purple. | `error, critical` |

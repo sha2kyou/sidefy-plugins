@@ -1,7 +1,7 @@
 {
     "name": "Switch Wishlist Discount Tracker (Japan Region)",
     "description": "Monitor your Nintendo Switch wishlist game discounts (Japan eShop only) and get reminded in the calendar when games go on sale, displaying original price, current price, and discount details.",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.10.7",
     "tags": [
@@ -17,7 +17,7 @@
     "category": "Gaming & Entertainment",
     "config_options": {
         "game_ids": {
-            "type": "text",
+            "type": "string",
             "default": "",
             "required": true,
             "description": "List of game IDs (NSUID) to monitor, separated by commas. Maximum 10 games supported. Example: 70010000063514,70010000027619"

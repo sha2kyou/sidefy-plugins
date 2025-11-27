@@ -1,7 +1,7 @@
 {
     "name": "Steam Wishlist Discount Tracker",
     "description": "Checks your Steam wishlist every 30 minutes for game discounts and reminds you in the calendar when games go on sale.",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.10.7",
     "tags": [
@@ -15,7 +15,7 @@
     "category": "Gaming & Entertainment",
     "config_options": {
         "steam_id": {
-            "type": "text",
+            "type": "string",
             "default": "",
             "required": true,
             "description": "Your Steam username (e.g., maozhijie)"

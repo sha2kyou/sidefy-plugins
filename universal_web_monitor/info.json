@@ -1,7 +1,7 @@
 {
     "name": "Universal Web Monitor",
     "description": "Monitor any webpage and extract insights using AI based on your custom prompt.",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.11.12",
     "tags": [
@@ -14,23 +14,23 @@
     "category": "Productivity",
     "config_options": {
         "url": {
-            "type": "text",
+            "type": "url",
             "required": true,
             "description": "The webpage URL to monitor."
         },
         "prompt": {
-            "type": "text",
+            "type": "string",
             "required": true,
             "description": "Instructions for AI: What information to extract."
         },
         "interval": {
-            "type": "text",
+            "type": "string",
             "default": "6",
             "required": true,
             "description": "Update interval in hours (e.g. 6)."
         },
         "keywords": {
-            "type": "text",
+            "type": "string",
             "required": false,
             "description": "Keywords to highlight (comma separated). If found, event turns purple."
         }

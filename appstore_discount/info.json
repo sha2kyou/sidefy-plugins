@@ -1,7 +1,7 @@
 {
     "name": "AppStore Discount Tracker",
     "description": "Monitors App Store app prices and reminds you in the calendar when prices drop below your configured original price.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.9.18",
     "tags": [
@@ -15,7 +15,7 @@
     "category": "Shopping & Utilities",
     "config_options": {
         "app_data": {
-            "type": "text",
+            "type": "string",
             "default": "6751482006_us_19.99",
             "required": true,
             "description": "App data to monitor (format: appId_region_originalPrice, e.g., 12345_us_68.00,2736473_cn_38.00)"
