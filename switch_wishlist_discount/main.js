@@ -246,6 +246,7 @@ function fetchEvents(config) {
                 endDate: sidefy.date.format(timestamp),
                 color: discountColor,
                 notes: notes,
+                icon: "https://store-jp.nintendo.com/mobify/bundle/1763/static/img/head/favicon.ico",
                 href: game.url,
                 imageURL: game.image,
                 isAllDay: true,

@@ -1,7 +1,7 @@
 {
     "name": "GitHub User Events",
     "description": "Fetch public activity events for a specified GitHub user, including pushes, forks, stars, issues, PRs, and more. Supports token authentication for higher API call limits.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.10.7",
     "tags": [

@@ -95,6 +95,7 @@ function fetchEvents(config) {
 
                     // 选择图片：优先使用截图，没有截图则使用图标
                     var imageUrl = null;
+                    var appIcon = null;
                     var screenshots = appInfo.screenshotUrls || [];
                     if (screenshots.length > 0) {
                         // 随机选择一张截图
@@ -104,6 +105,15 @@ function fetchEvents(config) {
                         imageUrl = appInfo.artworkUrl512 || appInfo.artworkUrl100;
                     }
 
+                    // 获取应用图标，优先使用最小的图标
+                    if (appInfo.artworkUrl60) {
+                        appIcon = appInfo.artworkUrl60;
+                    } else if (appInfo.artworkUrl100) {
+                        appIcon = appInfo.artworkUrl100;
+                    } else if (appInfo.artworkUrl512) {
+                        appIcon = appInfo.artworkUrl512;
+                    }
+
                     discountedApps.push({
                         appId: appInfo.trackId,
                         name: appInfo.trackName,
@@ -111,6 +121,7 @@ function fetchEvents(config) {
                         originalPrice: originalPriceFormatted,
                         discountPercent: discountPercent,
                         imageUrl: imageUrl,
+                        appIcon: appIcon,
                         storeUrl: appInfo.trackViewUrl,
                         region: app.region
                     });
@@ -158,6 +169,7 @@ function fetchEvents(config) {
                     endDate: sidefy.date.format(timestamp),
                     color: discountColor,
                     notes: notes,
+                    icon: app.appIcon,
                     href: app.storeUrl,
                     imageURL: app.imageUrl,
                     isAllDay: true,

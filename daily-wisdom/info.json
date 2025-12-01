@@ -18,5 +18,8 @@
         "network": false,
         "storage": true,
         "ai": true
-    }
+    },
+    "discontinued": true,
+    "discontinued_reason": "This plugin uses AI-generated quotes which may have quality inconsistencies and lack of meaningful content value. The generic nature of AI-generated wisdom quotes doesn't provide significant utility for users, and maintaining this functionality doesn't align with our focus on practical, high-value plugins.",
+    "breaking_changes": ["0.0.9"]
 }

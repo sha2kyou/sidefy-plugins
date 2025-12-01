@@ -1,7 +1,7 @@
 {
     "name": "Daily Random Pokemon",
     "description": "Daily random Pokemon from Generation 1-6 (#1-720) with image, name, number, and detailed information.",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "author": "Sidefy Team",
     "min_support_app_version": "2025.9.8",
     "tags": [

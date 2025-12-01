@@ -46,6 +46,7 @@ function fetchEvents(config) {
             startDate: sidefy.date.format(eventDate.getTime() / 1000),
             endDate: sidefy.date.format(eventDate.getTime() / 1000),
             color: getTypeColor(pokemonData.types[0]),
+            icon: "https://pokemondb.net/favicon.ico",
             href: pokemonUrl,
             imageURL: pokemonData.imageUrl,
             isAllDay: true,

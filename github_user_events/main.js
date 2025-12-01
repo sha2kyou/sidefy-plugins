@@ -76,7 +76,7 @@ function fetchEvents(config) {
                 endDate: sidefy.date.format(eventTime.getTime() / 1000),
                 color: color,
                 notes: notes,
-                icon: event.actor.avatar_url || null,
+                icon: event.actor.avatar_url || "https://github.com/favicon.ico",
                 isAllDay: false,
                 isPointInTime: true,
                 href: href

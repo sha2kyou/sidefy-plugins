@@ -93,6 +93,7 @@ function fetchEvents(config) {
                 endDate: sidefy.date.format(localEndTime.getTime() / 1000),
                 color: color,
                 notes: getNotificationNotes(notification),
+                icon: "https://github.com/favicon.ico",
                 isAllDay: false,
                 isPointInTime: true,
                 href: getNotificationUrl(notification)

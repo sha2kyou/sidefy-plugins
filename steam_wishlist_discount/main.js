@@ -200,6 +200,7 @@ function fetchEvents(config) {
                     endDate: sidefy.date.format(timestamp),
                     color: discountColor,
                     notes: notes,
+                    icon: "https://store.steampowered.com/favicon.ico",
                     href: game.storeUrl,
                     imageURL: game.headerImage,
                     isAllDay: true,
