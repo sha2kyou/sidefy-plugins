@@ -1,11 +1,11 @@
 /**
- * V2EX Notifications Plugin
- * Parses V2EX private Atom feed to display notifications in the calendar.
+ * V2EX 未读提醒插件
+ * 解析 V2EX 私有 Atom Feed 并在日历中显示提醒。
  */
 function fetchEvents(config) {
     var token = config.token;
     if (!token || token.trim() === "") {
-        throw new Error("Please configure your V2EX Private RSS Token.");
+        throw new Error("请配置您的 V2EX 私有 RSS Token。");
     }
 
     var rssUrl = "https://www.v2ex.com/n/" + token.trim() + ".xml";
@@ -21,7 +21,7 @@ function fetchEvents(config) {
     try {
         var response = sidefy.http.get(rssUrl);
         if (!response) {
-            throw new Error("Failed to fetch V2EX RSS feed.");
+            throw new Error("获取 V2EX RSS 订阅失败。");
         }
 
         // Parse Atom entries
@@ -67,11 +67,11 @@ function fetchEvents(config) {
             });
         }
 
-        // Cache for 10 minutes
+        // 缓存 10 分钟
         sidefy.storage.set(cacheKey, events, { ttl: 10 * 60 * 1000 });
 
     } catch (err) {
-        sidefy.log("V2EX Plugin Error: " + err.message);
+        sidefy.log("V2EX 插件错误: " + err.message);
         throw err;
     }
 
@@ -79,11 +79,11 @@ function fetchEvents(config) {
 }
 
 /**
- * Detect notification type based on title and content
- * Based on V2EX RSS samples:
- * - Reply/Mention: Title is not empty
- * - Thanks (Like): Title is empty, Content is NOT empty
- * - Favorite: Title is empty, Content is empty
+ * 根据标题和内容检测通知类型
+ * 基于 V2EX RSS 样例:
+ * - 回复/提及: 标题不为空
+ * - 点赞 (感谢): 标题为空, 内容不为空
+ * - 收藏: 标题为空, 内容为空
  */
 function detectType(title, content) {
     if (!title || title.trim() === "") {
@@ -113,21 +113,21 @@ function detectType(title, content) {
 }
 
 /**
- * Get color for notification type
+ * 获取通知类型的对应颜色
  */
 function getTypeColor(type) {
     var colors = {
-        "reply": "#4ECDC4",    // Cyan
-        "thanks": "#FFD93D",   // Gold
-        "mention": "#FF6B6B",  // Red
-        "favorite": "#FF8B13", // Orange
-        "other": "#95A5A6"     // Grey
+        "reply": "#4ECDC4",    // 青色
+        "thanks": "#FFD93D",   // 金色
+        "mention": "#FF6B6B",  // 红色
+        "favorite": "#FF8B13", // 橙色
+        "other": "#95A5A6"     // 灰色
     };
     return colors[type.id] || colors.other;
 }
 
 /**
- * Extract content of an XML tag
+ * 提取 XML 标签内容
  */
 function extractTagContent(xml, tag, startBoundary, endBoundary) {
     var searchArea = xml;
@@ -144,7 +144,7 @@ function extractTagContent(xml, tag, startBoundary, endBoundary) {
 }
 
 /**
- * Extract attribute value of an XML tag
+ * 提取 XML 标签属性值
  */
 function extractTagAttribute(xml, tag, attr) {
     var tagRegex = new RegExp("<" + tag + "[^>]*" + attr + "=['\"]([^'\"]*)['\"][^>]*>");
@@ -153,7 +153,7 @@ function extractTagAttribute(xml, tag, attr) {
 }
 
 /**
- * Clean HTML content for notes
+ * 清理 HTML 内容以用于备注
  */
 function cleanContent(content) {
     if (!content) return "";
@@ -170,7 +170,7 @@ function cleanContent(content) {
 }
 
 /**
- * Simple hash for cache key
+ * 简单的字符串哈希，用于生成缓存键
  */
 function hashString(str) {
     var hash = 0;
