@@ -1,0 +1,26 @@
+{
+    "name": "V2EX Notifications",
+    "description": "Fetch V2EX unread notifications via private RSS/Atom feed. Supports distinguishing between mentions, replies, and thanks.",
+    "version": "1.0.0",
+    "author": "Sidefy Team",
+    "min_support_app_version": "2025.10.7",
+    "tags": [
+        "v2ex",
+        "notifications",
+        "community",
+        "social"
+    ],
+    "category": "Social",
+    "config_options": {
+        "token": {
+            "type": "string",
+            "default": "",
+            "required": true,
+            "description": "Your V2EX private RSS token (the long string in your RSS URL)"
+        }
+    },
+    "requirements": {
+        "network": true,
+        "storage": true
+    }
+}
