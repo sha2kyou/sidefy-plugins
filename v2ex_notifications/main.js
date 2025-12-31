@@ -9,15 +9,16 @@ function fetchEvents(config) {
     }
 
     var rssUrl = "https://www.v2ex.com/n/" + token.trim() + ".xml";
-    var cacheKey = "v2ex_notifications_" + hashString(token);
 
-    // Check cache
-    var cachedData = sidefy.storage.get(cacheKey);
-    if (cachedData) {
-        return cachedData;
-    }
+    // 生成包含日期的缓存键
+    var now = new Date();
+    var dateKey = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+    var cacheKey = "v2ex_notifications_" + hashString(token) + "_" + dateKey;
 
-    var events = [];
+    // 先读取当天的缓存数据
+    var cachedEvents = sidefy.storage.get(cacheKey) || [];
+
+    var newEvents = [];
     try {
         var response = sidefy.http.get(rssUrl);
         if (!response) {
@@ -53,7 +54,7 @@ function fetchEvents(config) {
                 var startDate = sidefy.date.format(pubDate.getTime() / 1000);
                 var endDate = sidefy.date.format((pubDate.getTime() + 30 * 60 * 1000) / 1000);
 
-                events.push({
+                newEvents.push({
                     title: displayTitle,
                     startDate: startDate,
                     endDate: endDate,
@@ -67,16 +68,65 @@ function fetchEvents(config) {
             });
         }
 
-        // 缓存 10 分钟
-        sidefy.storage.set(cacheKey, events, { ttl: 10 * 60 * 1000 });
+        // 合并缓存数据和新数据,去重
+        var mergedEvents = mergeAndDeduplicateEvents(cachedEvents, newEvents);
 
+        // 计算到今天结束的剩余毫秒数
+        var endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+        var remainingMs = endOfDay.getTime() - now.getTime();
+        var ttl = Math.max(remainingMs, 5 * 60 * 1000); // 至少缓存5分钟
+
+        // 覆盖缓存
+        sidefy.storage.set(cacheKey, mergedEvents, { ttl: ttl });
+
+        return mergedEvents;
     } catch (err) {
         sidefy.log("V2EX 插件错误: " + err.message);
+        // 如果请求失败但有缓存,返回缓存数据
+        if (cachedEvents.length > 0) {
+            return cachedEvents;
+        }
         throw err;
     }
-
-    return events;
 }
+
+/**
+ * 合并并去重事件
+ * 使用 href 作为唯一标识
+ */
+function mergeAndDeduplicateEvents(cachedEvents, newEvents) {
+    var eventMap = {};
+
+    // 先添加缓存的事件
+    cachedEvents.forEach(function (event) {
+        if (event.href) {
+            eventMap[event.href] = event;
+        }
+    });
+
+    // 添加或更新新事件
+    newEvents.forEach(function (event) {
+        if (event.href) {
+            eventMap[event.href] = event;
+        }
+    });
+
+    // 转换回数组并按时间排序(最新的在前)
+    var mergedArray = [];
+    for (var key in eventMap) {
+        if (eventMap.hasOwnProperty(key)) {
+            mergedArray.push(eventMap[key]);
+        }
+    }
+
+    // 按 startDate 降序排序
+    mergedArray.sort(function (a, b) {
+        return b.startDate.localeCompare(a.startDate);
+    });
+
+    return mergedArray;
+}
+
 
 /**
  * 根据标题和内容检测通知类型
