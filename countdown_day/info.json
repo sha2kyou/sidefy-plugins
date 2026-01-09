@@ -1,0 +1,31 @@
+{
+    "name": "Countdown Day",
+    "description": "Displays the number of days remaining until a specified date (e.g., anniversary, deadline) in your timeline.",
+    "version": "0.1.0",
+    "author": "Sidefy Team",
+    "min_support_app_version": "2026.1.1",
+    "tags": [
+        "countdown",
+        "date",
+        "reminder",
+        "utility"
+    ],
+    "category": "Productivity & Utilities",
+    "config_options": {
+        "target_date": {
+            "type": "date",
+            "required": true,
+            "description": "Target date (e.g., 2026-01-01)"
+        },
+        "event_name": {
+            "type": "string",
+            "default": "Important Day",
+            "required": true,
+            "description": "Event name (e.g., Wedding Anniversary, Project Launch)"
+        }
+    },
+    "requirements": {
+        "network": false,
+        "storage": false
+    }
+}
