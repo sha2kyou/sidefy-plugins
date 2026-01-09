@@ -60,11 +60,7 @@ function fetchEvents(config) {
             endDate: sidefy.date.format(timestamp),
             color: color,
             isAllDay: true,
-            isPointInTime: true,
-            notes: sidefy.i18n({
-                "en": "Date: " + targetDateStr + "\nEvent: " + eventName,
-                "zh": "日期: " + targetDateStr + "\n事件: " + eventName
-            })
+            isPointInTime: true
         }];
 
         return events;
